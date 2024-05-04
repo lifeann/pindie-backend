@@ -8,7 +8,7 @@ const connectToDatabase = require("./database/connect");
 const cors = require("./middlewares/cors");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 connectToDatabase();
 
 app.use(
