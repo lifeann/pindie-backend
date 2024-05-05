@@ -9,6 +9,19 @@ const findAllGames = async (req, res, next) => {
   next();
 };
 
+const checkIsGameExists = async (req, res, next) => {
+  const isInArray = req.gamesArray.find((game) => {
+    return req.body.name === game.name;
+  });
+  if (isInArray) {
+    res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Игра с таким названием уже существует" }));
+  } else {
+  next();
+  }
+}; 
+
+
 const createGame = async (req, res, next) => {
   console.log("POST /games");
   try {
@@ -97,4 +110,4 @@ if (req.body.users.length - 1 === req.game.users.length) {
 }
 }; 
 
-module.exports = { findAllGames, createGame, findGameById, updateGame, deleteGame, checkEmptyFields, checkIfCategoriesAvaliable, checkIfUsersAreSafe };
+module.exports = { findAllGames, createGame, findGameById, updateGame, deleteGame, checkEmptyFields, checkIfCategoriesAvaliable, checkIfUsersAreSafe, checkIsGameExists };

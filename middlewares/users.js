@@ -52,4 +52,30 @@ const deleteUser = async (req, res, next) => {
   }
 }; 
 
-module.exports = { findAllUsers, createUser, findUserById, updateUser, deleteUser };
+const checkEmptyNameAndEmailAndPassword = async (req, res, next) => {
+  if (
+    !req.body.username ||
+    !req.body.email ||
+    !req.body.password
+   ) { 
+    res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Заполни все поля" }));
+  } else {
+    next();
+  }
+};
+
+const checkEmptyNameAndEmail = async (req, res, next) => {
+  if (
+    !req.body.username ||
+    !req.body.email
+   ) { 
+    res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Заполни все поля" }));
+  } else {
+    next();
+  }
+};
+
+
+module.exports = { findAllUsers, createUser, findUserById, updateUser, deleteUser, checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail };
