@@ -5,6 +5,18 @@ const findAllUsers = async (req, res, next) => {
   next();
 };
 
+const checkIsUserExists = async (req, res, next) => {
+  const isInArray = req.usersArray.find((user) => {
+    return req.body.email === user.email;
+  });
+  if (isInArray) {
+    res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Пользователь с таким email уже существует" }));
+  } else {
+    next();
+  }
+}; 
+
 const createUser = async (req, res, next) => {
   console.log("POST /users");
   try {
@@ -59,7 +71,7 @@ const checkEmptyNameAndEmailAndPassword = async (req, res, next) => {
     !req.body.password
    ) { 
     res.setHeader("Content-Type", "application/json");
-        res.status(400).send(JSON.stringify({ message: "Заполни все поля" }));
+        res.status(400).send(JSON.stringify({ message: "Введите имя, email и пароль" }));
   } else {
     next();
   }
@@ -71,11 +83,11 @@ const checkEmptyNameAndEmail = async (req, res, next) => {
     !req.body.email
    ) { 
     res.setHeader("Content-Type", "application/json");
-        res.status(400).send(JSON.stringify({ message: "Заполни все поля" }));
+        res.status(400).send(JSON.stringify({ message: "Введите имя и email" }));
   } else {
     next();
   }
 };
 
 
-module.exports = { findAllUsers, createUser, findUserById, updateUser, deleteUser, checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail };
+module.exports = { findAllUsers, createUser, findUserById, updateUser, deleteUser, checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail, checkIsUserExists };

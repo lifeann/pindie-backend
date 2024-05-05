@@ -5,8 +5,8 @@ const { sendAllGames, sendGameCreated, sendGameById , sendGameUpdated, sendGameD
 
 gamesRouter.get("/games", findAllGames, sendAllGames);
 gamesRouter.get("/games/:id", findGameById, sendGameById);
-gamesRouter.post("/games", findAllGames, checkIsGameExists, checkEmptyFields, checkIfCategoriesAvaliable, createGame, sendGameCreated);
-gamesRouter.put("/games/:id", findGameById, checkIfUsersAreSafe, checkIfCategoriesAvaliable, updateGame, sendGameUpdated);
+gamesRouter.post("/games", findAllGames, checkIsGameExists, checkIfCategoriesAvaliable, checkEmptyFields, createGame, sendGameCreated);
+gamesRouter.put("/games/:id", findGameById, checkIfUsersAreSafe, checkIfCategoriesAvaliable, checkEmptyFields, updateGame, sendGameUpdated);
 gamesRouter.delete("/games/:id", deleteGame, sendGameDeleted); 
 
 module.exports = gamesRouter;
