@@ -18,7 +18,7 @@ const {
   sendCategoryDeleted,
 } = require("../controllers/categories");
 
-const checkAuth = require("../middlewares/auth");
+const { checkAuth } = require("../middlewares/auth");
 
 categoriesRouter.get("/categories", findAllCategories, sendAllCategories);
 categoriesRouter.get("/categories/:id", findCategoryById, sendCategoryById);

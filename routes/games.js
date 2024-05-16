@@ -19,7 +19,7 @@ const {
   sendGameDeleted,
 } = require("../controllers/games");
 
-const checkAuth = require("../middlewares/auth");
+const { checkAuth } = require("../middlewares/auth");
 
 gamesRouter.get("/games", findAllGames, sendAllGames);
 gamesRouter.get("/games/:id", findGameById, sendGameById);

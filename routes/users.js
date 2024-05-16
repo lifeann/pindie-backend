@@ -20,7 +20,7 @@ const {
   sendMe,
 } = require("../controllers/users");
 
-const checkAuth = require("../middlewares/auth");
+const { checkAuth} = require("../middlewares/auth");
 
 usersRouter.get("/users", findAllUsers, sendAllUsers);
 usersRouter.get("/users/:id", findUserById, sendUserById);
