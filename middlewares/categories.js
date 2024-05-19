@@ -13,9 +13,9 @@ const checkIsCategoryExists = async (req, res, next) => {
     res.setHeader("Content-Type", "application/json");
         res.status(400).send(JSON.stringify({ message: "Категория с таким названием уже существует" }));
   } else {
-  next();
+    next();
   }
-}; 
+};
 
 const createCategory = async (req, res, next) => {
   console.log("POST /categories");
