@@ -23,9 +23,9 @@ const checkIsUserExists = async (req, res, next) => {
 };
 
 const createUser = async (req, res, next) => {
-  console.log("POST /users");
+  //console.log("POST /users");
   try {
-    console.log(req.body);
+    //console.log(req.body);
     req.user = await users.create(req.body);
     next();
   } catch (error) {
@@ -37,7 +37,7 @@ const createUser = async (req, res, next) => {
 };
 
 const findUserById = async (req, res, next) => {
-  console.log("GET /users/:id");
+  //console.log("GET /users/:id");
   try {
     req.user = await users.findById(req.params.id);
     next();
@@ -48,7 +48,7 @@ const findUserById = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
-  console.log("PUT /users/:id");
+  //console.log("PUT /users/:id");
   try {
     req.user = await users.findByIdAndUpdate(req.params.id, req.body);
     next();
@@ -61,7 +61,7 @@ const updateUser = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res, next) => {
-  console.log("DELETE /users/:id");
+  //console.log("DELETE /users/:id");
   try {
     req.user = await users.findByIdAndDelete(req.params.id);
     next();

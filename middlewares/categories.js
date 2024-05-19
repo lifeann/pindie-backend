@@ -18,9 +18,9 @@ const checkIsCategoryExists = async (req, res, next) => {
 };
 
 const createCategory = async (req, res, next) => {
-  console.log("POST /categories");
+  //console.log("POST /categories");
   try {
-    console.log(req.body);
+    //console.log(req.body);
     req.category = await categories.create(req.body);
     next();
   } catch (error) {
@@ -33,7 +33,7 @@ const createCategory = async (req, res, next) => {
 
 const findCategoryById = async (req, res, next) => {
   try {
-    console.log("GET /categories/:id");
+    //console.log("GET /categories/:id");
       req.category = await categories.findById(req.params.id);
   next();
   } catch (error) {
@@ -64,7 +64,7 @@ const updateCategory = async (req, res, next) => {
 }; 
 
 const deleteCategory = async (req, res, next) => {
-  console.log("DELETE /categories/:id");
+  //console.log("DELETE /categories/:id");
   try { 
     req.category = await categories.findByIdAndDelete(req.params.id);
     next();
