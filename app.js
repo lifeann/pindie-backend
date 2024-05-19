@@ -1,21 +1,24 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const connectToDatabase = require("./database/connect");
+const cors = require("./middlewares/cors");
+const apiRouter = require("./routes/api");
+const cookieParser = require("cookie-parser");
+const pagesRouter = require("./routes/pages");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-const gamesRouter = require("./routes/games");
-const usersRouter = require("./routes/users");
-const categoriesRouter = require("./routes/categories");
+const PORT = process.env.PORT;
+connectToDatabase();
 
 app.use(
+  cors,
+  cookieParser(),
   bodyParser.json(),
+  pagesRouter,
+  apiRouter,
   express.static(path.join(__dirname, "public")),
-  gamesRouter,
-  usersRouter,
-  categoriesRouter
-);
+  );
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);
